@@ -59,8 +59,33 @@ export function getDetailsDog(id) {
 export function postNewDog(payload) {
   return async function () {
     try {
-      const newDog = await axios.post('/dog', payload);
+      let newDog = await axios.post('/dog', payload);
       return newDog;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function putDog(id, payload) {
+  return async function () {
+    try {
+      let editDog = await axios.put(`/edit/${id}`, payload);
+      return editDog;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function deleteDog(id) {
+  return async function (dispatch) {
+    try {
+      let dropDog = await axios.delete(`/delete/${id}`);
+      return dispatch({
+        type: 'DELETE_DOG',
+        payload: dropDog,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -90,9 +115,9 @@ export function filterByExistence(exc) {
   };
 }
 
-export function sort(value) {
+export function filterSort(value) {
   return {
-    type: 'SORT',
+    type: 'FILTER_SORT',
     payload: value,
   };
 }
