@@ -118,13 +118,13 @@ export function filterByExistence(payload) {
 export function filterByWeight(payload) {
   return {
     type: 'FILTER_WEIGHT',
-    payload: payload
+    payload: payload,
   };
 }
 
 export function filterByHeight(payload) {
   return {
     type: 'FILTER_HEIGHT',
-    payload: payload
-  }
+    payload: payload,
+  };
 }
