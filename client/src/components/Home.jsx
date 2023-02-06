@@ -27,11 +27,7 @@ export const Home = () => {
     <div>
       <Link to={'/dog'}>Add new Dog</Link>
       <h1>The Beutifoul Dogs</h1>
-      <button
-        onClick={(e) => {
-          handleClick(e);
-        }}
-      >
+      <button onClick={(e) => {handleClick(e)}}>
         Reload Dogs
       </button>
       <div>

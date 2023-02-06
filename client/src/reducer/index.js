@@ -77,66 +77,10 @@ function rootReducer(state = initialState, action) {
         dogs: filterExist,
       };
 
-    case 'FILTER_SORT':
-      const sortBy =
-        action.payload === 'aToZ'
-          ? state.dogs.sort(function (a, b) {
-              if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                return 1;
-              }
-              if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                return -1;
-              }
-              return 0;
-            }) //sino
-          : action.payload === 'zToA'
-          ? state.dogs.sort(function (a, b) {
-              if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                return -1;
-              }
-              if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                return 1;
-              }
-              return 0;
-            })
-          : action.payload === 'weightAsc'
-          ? state.dogs.sort(function (a, b) {
-              const PromA = (parseInt(a.weightMin) + parseInt(a.weightMax)) / 2;
-              const PromB = (parseInt(b.weightMin) + parseInt(b.weightMax)) / 2;
-              if (PromA > PromB) {
-                return 1;
-              }
-              if (PromA < PromB) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.dogs.sort(function (a, b) {
-              const PromA = (parseInt(a.weightMin) + parseInt(a.weightMax)) / 2;
-              const PromB = (parseInt(b.weightMin) + parseInt(b.weightMax)) / 2;
-              if (PromA > PromB) {
-                return -1;
-              }
-              if (PromA < PromB) {
-                return 1;
-              }
-              return 0;
-            });
-      return {
-        ...state,
-        dogs: sortBy,
-      };
-    default: {
-      return state;
-    }
-  }
-}
-
-export default rootReducer;
-
-/* case 'FILTER_ALPHA':
+    case 'FILTER_ALPHA':
       const filterAlpha =
-        action.payload === 'asc' ? state.dogs.sort(function (a, b) {
+        action.payload === 'asc'
+          ? state.dogs.sort(function (a, b) {
               if (a.name > b.name) {
                 return 1;
               }
@@ -158,4 +102,39 @@ export default rootReducer;
         ...state,
         dogs: filterAlpha,
       };
- */
+
+    case 'FILTER_WEIGHT':
+      const sortWeight =
+        action.payload === 'asc'
+          ? state.dogs.sort(function (a, b) {
+              return parseInt(a.weightMin) - parseInt(b.weightMin);
+            })
+          : state.dogs.sort(function (a, b) {
+              return parseInt(b.weightMax) - parseInt(a.weightMax);
+            });
+      return {
+        ...state,
+        dogs: sortWeight,
+      };
+
+    case 'FILTER_HEIGHT':
+      const sortHeight =
+        action.payload === 'asc'
+          ? state.dogs.sort(function (a, b) {
+              return parseInt(a.heightMin) - parseInt(b.heightMin);
+            })
+          : state.dogs.sort(function (a, b) {
+              return parseInt(b.heightMax) - parseInt(a.heightMax);
+            });
+      return {
+        ...state,
+        dogs: sortHeight,
+      };
+
+    default: {
+      return state;
+    }
+  }
+}
+
+export default rootReducer;

@@ -94,10 +94,10 @@ export function deleteDog(id) {
 
 //! ------------- FILTROS -------------- !//
 
-export function filterByTemp(temp) {
+export function filterByTemp(payload) {
   return {
     type: 'FILTER_TEMPERAMENTS',
-    payload: temp,
+    payload: payload,
   };
 }
 
@@ -108,16 +108,23 @@ export function filterByAlpha(payload) {
   };
 }
 
-export function filterByExistence(exc) {
+export function filterByExistence(payload) {
   return {
     type: 'FILTER_EXISTENCE',
-    payload: exc,
+    payload: payload,
   };
 }
 
-export function filterSort(value) {
+export function filterByWeight(payload) {
   return {
-    type: 'FILTER_SORT',
-    payload: value,
+    type: 'FILTER_WEIGHT',
+    payload: payload
   };
+}
+
+export function filterByHeight(payload) {
+  return {
+    type: 'FILTER_HEIGHT',
+    payload: payload
+  }
 }
